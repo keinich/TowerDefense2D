@@ -7,17 +7,17 @@ enum {
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
+onready var stats = $EnemyStatus
+onready var healthBar = $HealthBar
 onready var animationState = animationTree.get("parameters/playback")
-
-export var maxHealth = 100
 
 var speed = 50.0
 var path = PoolVector2Array() setget set_path
 var state = STANDING
-onready var health = maxHealth
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	healthBar.set_value(stats.health)
 	set_process(false)
 
 func _process(delta):
@@ -53,12 +53,12 @@ func set_path(value : PoolVector2Array) -> void:
 
 
 func _on_EnemyHurtbox_body_entered(body):
-	health -= body.damage
-	if health <= 0:
-		queue_free()
-
+	stats.health -= body.damage
 
 func _on_EnemyHurtbox_area_entered(area):	
-	health -= area.damage
-	if health <= 0:
+	stats.health -= area.damage
+
+func _on_EnemyStatus_health_changed():
+	healthBar.set_value(stats.health)
+	if stats.health <= 0:
 		queue_free()

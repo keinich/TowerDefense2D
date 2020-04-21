@@ -16,7 +16,6 @@ func _ready():
 	var path = nav_2d.get_simple_path(enemy.global_position, targetPosition.global_position)
 	enemy.path = path
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

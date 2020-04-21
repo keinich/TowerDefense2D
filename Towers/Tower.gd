@@ -1,6 +1,6 @@
 extends Node2D
 
-const ArrowScene = preload("res://Towers/Projectile.tscn")
+const ArrowScene = preload("res://Weapons/Arrow.tscn")
 
 onready var detectionZone = $TowerDetectionZone
 

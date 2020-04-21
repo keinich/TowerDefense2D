@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Arrow1.png-08fd05c0f2ba152bad67b4e88db00c7c.stex"
+path="res://.import/Arrow1.png-997285387c422688baf31b8f78e5dcfc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Towers/Arrow1.png"
-dest_files=[ "res://.import/Arrow1.png-08fd05c0f2ba152bad67b4e88db00c7c.stex" ]
+source_file="res://Weapons/Arrow1.png"
+dest_files=[ "res://.import/Arrow1.png-997285387c422688baf31b8f78e5dcfc.stex" ]
 
 [params]
 
