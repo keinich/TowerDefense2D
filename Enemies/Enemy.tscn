@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Enemies/Spritesheets/Skeleton_Locomotion.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/EnemyHurtbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "IdleDown"
@@ -20,7 +21,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "IdleLeft"
 length = 0.1
 loop = true
@@ -54,8 +55,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "IdleUp"
+[sub_resource type="Animation" id=4]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -88,7 +88,7 @@ tracks/0/keys = {
 "values": [ 3, 1, 2, 3, 0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "WalkLeft"
 length = 0.4
 loop = true
@@ -122,8 +122,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 4 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "WalkUp"
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -138,9 +137,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 9, 10, 11, 8 ]
 }
-
-[sub_resource type="CapsuleShape2D" id=9]
-height = 3.83302
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "IdleLeft"
@@ -165,71 +161,86 @@ blend_point_3/node = SubResource( 13 )
 blend_point_3/pos = Vector2( 1, 0 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "WalkLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "WalkDown"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "WalkUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=21]
-blend_point_0/node = SubResource( 17 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=19]
+blend_point_0/node = SubResource( 15 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 18 )
+blend_point_1/node = SubResource( 16 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 19 )
+blend_point_2/node = SubResource( 17 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 20 )
+blend_point_3/node = SubResource( 18 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachine" id=15]
+[sub_resource type="AnimationNodeStateMachine" id=22]
 states/Idle/node = SubResource( 14 )
 states/Idle/position = Vector2( 266, 62 )
-states/Walk/node = SubResource( 21 )
+states/Walk/node = SubResource( 19 )
 states/Walk/position = Vector2( 432, 62 )
-transitions = [ "Idle", "Walk", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ) ]
+transitions = [ "Idle", "Walk", SubResource( 20 ), "Walk", "Idle", SubResource( 21 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -77, -51 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
+[sub_resource type="CapsuleShape2D" id=24]
+radius = 7.88732
+height = 9.43082
 
 [node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleDown = SubResource( 1 )
-anims/IdleLeft = SubResource( 4 )
+anims/IdleLeft = SubResource( 2 )
 anims/IdleRight = SubResource( 3 )
-anims/IdleUp = SubResource( 2 )
+anims/IdleUp = SubResource( 4 )
 anims/WalkDown = SubResource( 5 )
-anims/WalkLeft = SubResource( 8 )
+anims/WalkLeft = SubResource( 6 )
 anims/WalkRight = SubResource( 7 )
-anims/WalkUp = SubResource( 6 )
+anims/WalkUp = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 7.80589, -13.6188 )
+scale = Vector2( 0.825246, 0.925587 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
 frame = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.92305, 19.0558 )
-shape = SubResource( 9 )
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 15 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 16 )
+parameters/playback = SubResource( 23 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 6.31115, 3.32166 )
+shape = SubResource( 24 )
+
+[node name="EnemyHurtbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="EnemyHurtbox" index="0"]
+position = Vector2( 6.97549, -14.9475 )
+[connection signal="area_entered" from="EnemyHurtbox" to="." method="_on_EnemyHurtbox_area_entered"]
+
+[editable path="EnemyHurtbox"]
