@@ -9,6 +9,6 @@ position = Vector2( -0.407814, -3.87421 )
 scale = Vector2( 0.949023, 1.48428 )
 
 [node name="ProjectileHitbox" parent="." index="1"]
-damage = 10
+damage = 40
 
 [editable path="ProjectileHitbox"]
