@@ -21,7 +21,7 @@ tile_data = PoolIntArray( -851965, 2, 1, -851964, 2, 1, -851963, 2, 1, -851962, 
 position = Vector2( -54.6869, -6.05386 )
 
 [node name="StartPostion" type="Position2D" parent="."]
-position = Vector2( 287.14, 110.021 )
+position = Vector2( 413.056, 201.777 )
 
 [node name="TargetPosition" type="Position2D" parent="."]
 position = Vector2( 591.49, 319.837 )

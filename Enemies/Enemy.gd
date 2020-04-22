@@ -5,13 +5,14 @@ enum {
 	WALKING
 }
 
+export var speed = 5.0
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var stats = $EnemyStatus
 onready var healthBar = $HealthBar
 onready var animationState = animationTree.get("parameters/playback")
 
-var speed = 50.0
 var path = PoolVector2Array() setget set_path
 var state = STANDING
 
