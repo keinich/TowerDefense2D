@@ -1,6 +1,9 @@
 extends Node2D
 
 const EnemyScene  = preload("res://Enemies/Enemy.tscn")
+const TowerScene = preload("res://Towers/ArcherTower.tscn")
+const PlaceTowerScene = preload("res://Towers/PlaceTower.tscn")
+const ArcherTowerDefinition = preload("res://Towers/ArcherTowerDefinition.tscn")
 
 onready var nav_2d = $Navigation2D
 onready var startPosition = $StartPostion
@@ -19,3 +22,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+var testActive = false
+func _input(event):
+	if testActive:
+		return
+	if event is InputEventKey:
+		testActive = true
+		var towerDefinition = ArcherTowerDefinition.instance()
+		var tower = towerDefinition.towerScene.instance()
+		tower.set_preview_mode(true)
+		add_child(tower)
