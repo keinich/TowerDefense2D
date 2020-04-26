@@ -1,6 +1,6 @@
 extends Node
 
-onready var health = 100 setget set_health
+export var health = 1000 setget set_health
 
 signal health_changed
 

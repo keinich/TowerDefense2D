@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Towers/Gui/TowerAttributeBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Towers/Tower1.png" type="Texture" id=2]
 [ext_resource path="res://GuiElements/Border.png" type="Texture" id=3]
+[ext_resource path="res://Towers/Gui/SelectTowerDetailGui.gd" type="Script" id=4]
+[ext_resource path="res://GuiElements/AttackIcon.png" type="Texture" id=5]
+[ext_resource path="res://GuiElements/CostIcon.png" type="Texture" id=6]
 
 [node name="Counter" type="NinePatchRect"]
 margin_left = 2.0
@@ -15,6 +18,7 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,6 +51,9 @@ __meta__ = {
 margin_right = 66.0
 hint_tooltip = "Damage"
 
+[node name="Icon" parent="TowerAttributesContainer/AttackAttributeBox" index="0"]
+texture = ExtResource( 5 )
+
 [node name="SpeedAttributeBox" parent="TowerAttributesContainer" instance=ExtResource( 1 )]
 margin_top = 38.0
 margin_right = 66.0
@@ -58,3 +65,13 @@ margin_top = 76.0
 margin_right = 66.0
 margin_bottom = 110.0
 hint_tooltip = "Cost"
+
+[node name="Icon" parent="TowerAttributesContainer/CostAttributeBox" index="0"]
+margin_right = 840.0
+margin_bottom = 842.0
+rect_scale = Vector2( 0.04, 0.04 )
+texture = ExtResource( 6 )
+
+[editable path="TowerAttributesContainer/AttackAttributeBox"]
+
+[editable path="TowerAttributesContainer/CostAttributeBox"]

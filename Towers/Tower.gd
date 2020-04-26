@@ -4,11 +4,11 @@ const ArrowScene = preload("res://Weapons/Arrow.tscn")
 
 onready var detectionZone = $TowerDetectionZone
 onready var icon = $Sprite
+onready var towerStats = $TowerStats setget set_tower_stats
 
-export var fireRate = 1
-
-var timeSinceLastFire = fireRate
+var timeSinceLastFire = 0
 var preview_mode = false
+var fireRate = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,3 +54,7 @@ func get_texture():
 
 func set_preview_mode(value):
 	preview_mode = value
+	
+func set_tower_stats(value):
+	towerStats = value
+	fireRate = 1.0 / (towerStats.attackSpeed / 60.0)

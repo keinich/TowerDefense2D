@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/GrasslandsTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/GrassBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=3]
+[ext_resource path="res://Towers/StoneTowerDefinition.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Towers/Gui/SelectTowersGui.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Towers/ArcherTowerDefinition.tscn" type="PackedScene" id=7]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 3 )
@@ -24,3 +26,9 @@ position = Vector2( 413.056, 201.777 )
 position = Vector2( 591.49, 319.837 )
 
 [node name="TowerGui" parent="." instance=ExtResource( 5 )]
+towerDefinitions = [ ExtResource( 7 ), ExtResource( 4 ) ]
+
+[node name="DetailGui" parent="TowerGui" index="0"]
+margin_right = 173.0
+
+[editable path="TowerGui"]

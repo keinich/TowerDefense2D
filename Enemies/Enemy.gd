@@ -18,6 +18,7 @@ var state = STANDING
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	healthBar.set_max_value(stats.health)
 	healthBar.set_value(stats.health)
 	set_process(false)
 
@@ -56,7 +57,9 @@ func set_path(value : PoolVector2Array) -> void:
 func _on_EnemyHurtbox_body_entered(body):
 	stats.health -= body.damage
 
-func _on_EnemyHurtbox_area_entered(area):	
+func _on_EnemyHurtbox_area_entered(area):
+	if stats.health < 100:
+		var x = 0
 	stats.health -= area.damage
 
 func _on_EnemyStatus_health_changed():
